@@ -21,10 +21,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author luisd
- */
 @Entity
 @Table(name = "area_tematica")
 @NamedQueries({
@@ -48,8 +44,9 @@ public class AreaTematica implements Serializable {
     public AreaTematica() {
     }
 
-    public AreaTematica(Integer idArea) {
+    public AreaTematica(Integer idArea, String descrpcion) {
         this.idArea = idArea;
+        this.descripcion = descripcion;
     }
 
     public Integer getIdArea() {

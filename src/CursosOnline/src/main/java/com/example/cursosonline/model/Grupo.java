@@ -20,10 +20,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author luisd
- */
 @Entity
 @Table(name = "grupo")
 @NamedQueries({
@@ -50,7 +46,7 @@ public class Grupo implements Serializable {
 
     public Grupo() {
     }
-
+    
     public Grupo(Integer numGrupo) {
         this.numGrupo = numGrupo;
     }

@@ -6,6 +6,7 @@
 package com.example.cursosonline.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -24,10 +25,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author luisd
- */
 @Entity
 @Table(name = "usuario")
 @NamedQueries({
@@ -54,7 +51,7 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "activo")
-    private short activo;
+    private Integer activo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Estudiante> estudianteList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
@@ -72,7 +69,7 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(String idUsuario, String clave, Date ultimoAceso, short activo) {
+    public Usuario(String idUsuario, String clave, Date ultimoAceso, Integer activo) {
         this.idUsuario = idUsuario;
         this.clave = clave;
         this.ultimoAceso = ultimoAceso;
@@ -98,16 +95,21 @@ public class Usuario implements Serializable {
     public Date getUltimoAceso() {
         return ultimoAceso;
     }
+    
+    public String getStringDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(ultimoAceso);
+    }
 
     public void setUltimoAceso(Date ultimoAceso) {
         this.ultimoAceso = ultimoAceso;
     }
 
-    public short getActivo() {
+    public Integer getActivo() {
         return activo;
     }
 
-    public void setActivo(short activo) {
+    public void setActivo(Integer activo) {
         this.activo = activo;
     }
 
