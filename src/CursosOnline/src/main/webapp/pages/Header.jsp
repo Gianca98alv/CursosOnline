@@ -2,7 +2,7 @@
 <% Usuario user = (Usuario) session.getAttribute("user"); %>
 <header>
     <img src="../images/banco.png" alt=""/>
-    <a>Banco Estatal</a>
+    <a>Cursos Online</a>
     <div class="menu">
         <ul class="nav"> 
             <li>
