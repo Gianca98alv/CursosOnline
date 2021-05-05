@@ -5,10 +5,28 @@
  */
 package com.example.cursosonline.controller.login;
 
+import com.example.cursosonline.model.Usuario;
+
 /**
  *
  * @author User
  */
 public class Model {
     
+    private Usuario current;
+
+    public Model() {
+        this.current = new Usuario();
+    }
+
+    public Usuario getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Usuario current) {
+        this.current = current;
+    }
+    
+    
+
 }

@@ -22,13 +22,13 @@ public class AreaTematicaDAO {
     
     public AreaTematica get(Integer id_area) throws Exception {
         try{
-            String sql = "SELECT * FROM AreaTematica WHERE id_area = %d";
+            String sql = "SELECT * FROM area_tematica WHERE id_area = %d";
             sql = String.format(sql, id_area);
             ResultSet rs = db.executeQuery(sql);
             if(rs.next()) {
                 return map(rs);
             }
-            throw new SQLException("/AreaTematica/?=" + id_area + " Does not exist in DataBase");
+            throw new SQLException("/area_tematica/?=" + id_area + " Does not exist in DataBase");
         } catch(Exception e){
             throw new Exception("Exception: " + e.getMessage());
         }
@@ -36,7 +36,7 @@ public class AreaTematicaDAO {
     
     public Integer add(AreaTematica rol) throws Exception {
         try {
-            String sql = "INSERT INTO AreaTematica (descripcion) VALUES('%s')";
+            String sql = "INSERT INTO area_tematica (descripcion) VALUES('%s')";
             sql = String.format(sql, rol.getDescripcion());
             return db.executeInsert(sql);
         } catch(Exception e) {
@@ -46,11 +46,11 @@ public class AreaTematicaDAO {
     
     public Integer delete(Integer id_area) throws Exception {
         try{
-            String sql="DELETE FROM AreaTematica WHERE id_area=%d";
+            String sql="DELETE FROM area_tematica WHERE id_area=%d";
             sql = String.format(sql, id_area);
             int result = db.executeUpdate(sql);
             if(result == 0){
-                throw new Exception("AreaTematica/{" + id_area + "} Does not exist in DataBase");
+                throw new Exception("area_tematica/{" + id_area + "} Does not exist in DataBase");
             }
             return result;
         }catch(Exception e){

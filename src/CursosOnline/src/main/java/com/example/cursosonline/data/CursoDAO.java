@@ -10,11 +10,11 @@ package com.example.cursosonline.data;
  * @author User
  */
 import com.example.cursosonline.model.AreaTematica;
-import com.example.cursosonline.model.Rol;
 import com.example.cursosonline.model.Curso;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CursoDAO {
     
@@ -32,6 +32,37 @@ public class CursoDAO {
                 return map(rs);
             }
             throw new SQLException("/curso/?=" + id_curso + " Does not exist in DataBase");
+        } catch(Exception e){
+            throw new Exception("Exception: " + e.getMessage());
+        }
+    }
+        
+    public List<Curso> getAll() throws Exception {
+        List<Curso> cursos = new ArrayList<>();
+        try{
+            String sql = "SELECT * FROM Curso";
+            ResultSet rs = db.executeQuery(sql);
+            while(rs.next()) {
+                cursos.add(map(rs));
+            }
+            return cursos;
+        } catch(Exception e){
+            throw new Exception("Exception: " + e.getMessage());
+        }
+    }
+    
+    public List<Curso> searchCurso(String name, String area) throws Exception {
+        List<Curso> cursos = new ArrayList<>();
+        try{
+            String sql = "SELECT curso.id_curso, curso.descripcion, curso.area_tematica_id "
+                    + "FROM cursosonline.Curso curso INNER JOIN cursosonline.area_tematica area "
+                    + "WHERE curso.area_tematica_id = area.id_area AND curso.descripcion like '%%%s%%' AND area.descripcion like '%%%s%%'";
+            sql = String.format(sql, name, area);
+            ResultSet rs = db.executeQuery(sql);
+            while(rs.next()) {
+                cursos.add(map(rs));
+            }
+            return cursos;
         } catch(Exception e){
             throw new Exception("Exception: " + e.getMessage());
         }
@@ -87,4 +118,5 @@ public class CursoDAO {
         
         return curso;
     }
+
 }

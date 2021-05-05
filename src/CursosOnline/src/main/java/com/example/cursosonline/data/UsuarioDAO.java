@@ -22,9 +22,9 @@ public class UsuarioDAO {
     public UsuarioDAO() {
     }
     
-    public Usuario get(Integer id_usuario) throws Exception {
+    public Usuario get(String id_usuario) throws Exception {
         try{
-            String sql = "SELECT * FROM Usuario WHERE id_usuario = %d";
+            String sql = "SELECT * FROM Usuario WHERE id_usuario = '%s'";
             sql = String.format(sql, id_usuario);
             ResultSet rs = db.executeQuery(sql);
             if(rs.next()) {

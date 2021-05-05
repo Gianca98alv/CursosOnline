@@ -15,6 +15,8 @@ import com.example.cursosonline.model.Curso;
 import com.example.cursosonline.model.Grupo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GrupoDAO {
     
@@ -37,11 +39,25 @@ public class GrupoDAO {
         }
     }
     
+    public List<Grupo> getAll() throws Exception {
+        List<Grupo> grupos = new ArrayList<>();
+        try{
+            String sql = "SELECT * FROM Grupo";
+            ResultSet rs = db.executeQuery(sql);
+            while(rs.next()) {
+                grupos.add(map(rs));
+            }
+            return grupos;
+        } catch(Exception e){
+            throw new Exception("Exception: " + e.getMessage());
+        }
+    }
+    
     public Integer add(Grupo grupo) throws Exception {
         try {
-            String sql = "INSERT INTO Grupo(curso_id, profesor_id, horario_id) "
-                    + "VALUES(%d,%d,%d)";
-            sql = String.format(sql, grupo.getCurso().getIdCurso(), grupo.getProfesor().getIdProfesor(), grupo.getHorario().getSeq());
+            String sql = "INSERT INTO Grupo(curso_id, profesor_id, horario_id, cupo) "
+                    + "VALUES(%d,%d,%d, %d)";
+            sql = String.format(sql, grupo.getCurso().getIdCurso(), grupo.getProfesor().getIdProfesor(), grupo.getHorario().getSeq(), grupo.getCupo());
             return db.executeInsert(sql);
         } catch(Exception e) {
             throw new Exception("Exception: " + e.getMessage());
@@ -65,10 +81,10 @@ public class GrupoDAO {
     private Grupo map(ResultSet rs) throws Exception{
         Integer num_grupo = rs.getInt("num_grupo");
         Integer curso_id = rs.getInt("curso_id");
-        Integer profesor_id = rs.getInt("profesor_id");
+        String profesor_id = rs.getString("profesor_id");
         Integer horario_seq = rs.getInt("horario_seq");
-        
-        Grupo grupo = new Grupo(num_grupo);
+        Integer cupo = rs.getInt("cupo");
+        Grupo grupo = new Grupo(num_grupo, cupo);
         
         CursoDAO cursoDAO = new CursoDAO();
         Curso curso = cursoDAO.get(curso_id);

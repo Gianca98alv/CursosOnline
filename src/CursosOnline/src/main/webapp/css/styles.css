@@ -1,0 +1,79 @@
+
+html, body {
+  background-image: url("../images/background2.png");
+  background-color: #FFFFFF;
+  font-size: 15px;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  margin: 0;
+  padding: 0;
+  height: 98%;
+}
+
+.logo{
+    width: 90px;
+    height: 80px;
+    margin: -15px;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    margin:20px;
+}
+
+.container{
+    min-height: 68%;
+}
+
+input{
+    background-color: white;
+    height: 25px;
+    width: 100%;
+    border: 1px solid grey;
+    color: black;
+}
+
+input[type="text"].invalid, input[type="password"].invalid, select.invalid{
+    border: 3px solid #FC6544;
+}
+
+.button{
+    background-color: #005D99;
+    color: white;
+    height: 30px;
+    width: 100%;
+}
+
+
+footer {
+    background-color: #005D99;
+    font-family: fantasy;
+    font: 20px bold;
+    height: 49px;
+    color: white;
+    text-align: center;
+}
+
+td{
+    padding: 10px;
+}
+
+
+.ml-1{ margin-left: 10px; }
+.ml-2{ margin-left: 20px; }
+.ml-3{ margin-left: 30px; }
+
+.mr-1{ margin-right: 10px; }
+.mr-2{ margin-right: 20px; }
+.mr-3{ margin-right: 30px; }
+
+.mt-1{ margin-top: 10px; }
+.mt-2{ margin-top: 20px; }
+.mt-3{ margin-top: 30px; }
+
+.mb-1{ margin-bottom: 10px; }
+.mb-2{ margin-bottom: 20px; }
+.mb-3{ margin-bottom: 30px; }

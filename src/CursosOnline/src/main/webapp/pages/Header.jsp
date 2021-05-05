@@ -1,36 +1,43 @@
+<%@page import="com.example.cursosonline.model.Rol"%>
 <%@page import="com.example.cursosonline.model.Usuario"%>
-<% Usuario user = (Usuario) session.getAttribute("user"); %>
+<%@page import="com.example.cursosonline.model.Administrador"%>
+<%@page import="com.example.cursosonline.model.Profesor"%>
+<%@page import="com.example.cursosonline.model.Estudiante"%>
+
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 <header>
-    <img src="../images/banco.png" alt=""/>
-    <a>Cursos Online</a>
+    <ul>
+        <li>
+            <img class="logo" src="${pageContext.request.contextPath}/images/logo.png" alt="Logo Principal"/>
+        </li>
+        <li>
+            <a class="title">Cursos Online</a>
+        </li>
+    </ul>
     <div class="menu">
         <ul class="nav"> 
-            <li>
-                <a href="/pages/Index.jsp">Principal</a>
-            </li>
-            <% if(user==null){ %>
-                <li><a href="/pages/login/show">Iniciar Sesion</a></li>         
+            <li> <a href="/CursosOnline/index">Busqueda Cursos</a> </li>
+            <% if(usuario == null){ %>
+                <li><a href="/CursosOnline/login/show">Iniciar Sesión</a></li>         
             <% } %>
-            <% if(user!=null){ %>
-                <li><a href="/Banco_PIV/pages/client/data/show">Usuario: <%=user.getIdUsuario()%></a></li>
-                <% if(user.getRol().getDescripcion() == "administrador"){ %>
-                    <li><a href="/Banco_PIV/pages/cashier/accounts/open/show">Abrir Cuenta</a></li>
-                    <li><a href="/Banco_PIV/pages/Index.jsp">Movimientos</a>
-                    <ul>
-			<li><a href="/Banco_PIV/pages/cashier/movements/d_wd/show">Deposito o Retiro</a></li>
-			<li><a href="/Banco_PIV/pages/cashier/movements/transfer/show">Tranferencia</a></li>
-                    </ul>
-                    </li>
-                    <li>
-                        <a href="/Banco_PIV/pages/cashier/accounts/interests/show">Acreditar Intereses</a>
-                    </li>
+            <% if( usuario != null){ %>
+            <% if(usuario.getRol().getDescripcion().equals("Administrador")){ %>
+                    <% Administrador administrador = (Administrador) session.getAttribute("adminitrador"); %>
+                    <li><a href="/CursosOnline/administrador/registro-cursos">Listado y Registro de cursos</a></li>
+                    <li><a href="/CursosOnline/administrador/registro-profesores">Listado y Registro de profesores</a></li>
+                    <li><a href="/CursosOnline/administrador/perfil"><%= administrador.getNombre() + " " +  administrador.getApellido1() + " "  + administrador.getApellido2()%> </a></li>
                 <%}%>
-                <%if(user.getRol().getDescripcion() != "administrador"){ %>
-                    <li><a href="/Banco_PIV/pages/client/accounts/show">Mis Cuentas</a></li>
-                    <li><a href="/Banco_PIV/pages/client/accountsLinked/show">Cuentas Vinculadas</a></li>
-                    <li><a href="/Banco_PIV/pages/client/transfers/show">Transferencias</a></li>
+                <%if(usuario.getRol().getDescripcion().equals("Profesor")){ %>
+                    <% Profesor profesor = (Profesor) session.getAttribute("profesor"); %>
+                    <li><a href="/CursosOnline/profesor/carga-asignada">Carga asignada</a></li>
+                    <li><a href="/CursosOnline/profesor/perfil"><%= profesor.getNombre() + " " + profesor.getApellido1() + " " + profesor.getApellido2()%> </a></li>                
                 <%} %>
-                <li><a href="/Banco_PIV/pages/logout/show">Cerrar Sesion</a></li>
+                <%if(usuario.getRol().getDescripcion().equals("Estudiante")){ %>
+                    <% Estudiante estudiante = (Estudiante) session.getAttribute("estudiante"); %>
+                    <li><a href="/CursosOnline/estudiante/historial">Historial</a></li>
+                    <li><a href="/CursosOnline/estudiante/perfil"><%= estudiante.getNombre() + " " + estudiante.getApellido1() + " " + estudiante.getApellido2()%> </a></li>
+                <%} %>
+                <li><a href="/CursosOnline/login/logout">Cerrar Sesión</a></li>
             <% } %>
         </ul>
     </div>

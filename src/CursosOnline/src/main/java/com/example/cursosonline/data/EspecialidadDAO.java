@@ -10,7 +10,6 @@ package com.example.cursosonline.data;
  * @author User
  */
 import com.example.cursosonline.model.AreaTematica;
-import com.example.cursosonline.model.Horario;
 import com.example.cursosonline.model.Profesor;
 import com.example.cursosonline.model.Especialidad;
 import java.sql.ResultSet;
@@ -62,7 +61,7 @@ public class EspecialidadDAO {
     }
     
     private Especialidad map(ResultSet rs) throws Exception{
-        Integer profesor_id = rs.getInt("profesor_id");
+        String profesor_id = rs.getString("profesor_id");
         Integer area_tematica_id = rs.getInt("area_tematica_id");
         Integer id_especialidad = rs.getInt("id_especialidad");
         

@@ -1,0 +1,40 @@
+
+.menu {
+    background-color: #005D99;
+    font-family: fantasy;
+    font: 20px bold;
+    height: 55px;
+    
+}
+
+ul{
+    display:flex;  
+    list-style:none;
+    margin-left: -25px;
+
+}
+
+.menu li {
+    display: inline-block;
+    padding-top: 15px;
+}
+
+.menu li a:link, .menu li a:visited{
+    text-decoration: none;
+    color:white;
+    padding: 10px;
+}
+
+.menu li:hover > ul {
+    display:block;
+    float:left;
+    width: 10px;
+    height: 85px;
+}
+
+.menu li ul {
+    display:none;
+    position:absolute;
+    min-width:190px;
+    border-radius: 7px;
+}

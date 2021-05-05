@@ -20,9 +20,9 @@ public class ProfesorDAO {
     public ProfesorDAO() {
     }
     
-    public Profesor get(Integer usuario_id) throws Exception {
+    public Profesor get(String usuario_id) throws Exception {
         try{
-            String sql = "SELECT * FROM Profesor WHERE usuario_id = %d";
+            String sql = "SELECT * FROM Profesor WHERE usuario_id = '%s'";
             sql = String.format(sql, usuario_id);
             ResultSet rs = db.executeQuery(sql);
             if(rs.next()) {

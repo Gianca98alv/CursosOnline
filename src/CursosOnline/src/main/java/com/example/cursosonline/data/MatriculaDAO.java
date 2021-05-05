@@ -78,7 +78,7 @@ public class MatriculaDAO {
     
     private Matricula map(ResultSet rs) throws Exception{
         Integer matricula_id = rs.getInt("matricula_id");
-        Integer estudiante_id = rs.getInt("estudiante_id");
+        String estudiante_id = rs.getString("estudiante_id");
         Integer grupo_num = rs.getInt("grupo_num");
         Integer estado_id = rs.getInt("estado_id");
         Integer nota = rs.getInt("nota");

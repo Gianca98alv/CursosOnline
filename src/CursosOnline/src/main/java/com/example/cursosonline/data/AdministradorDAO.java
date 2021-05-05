@@ -20,9 +20,9 @@ public class AdministradorDAO {
     public AdministradorDAO() {
     }
     
-    public Administrador get(Integer usuario_id) throws Exception {
+    public Administrador get(String usuario_id) throws Exception {
         try{
-            String sql = "SELECT * FROM Administrador WHERE usuario_id = %d";
+            String sql = "SELECT * FROM Administrador WHERE usuario_id = '%s'";
             sql = String.format(sql, usuario_id);
             ResultSet rs = db.executeQuery(sql);
             if(rs.next()) {

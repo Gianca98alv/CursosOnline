@@ -44,7 +44,7 @@ public class AreaTematica implements Serializable {
     public AreaTematica() {
     }
 
-    public AreaTematica(Integer idArea, String descrpcion) {
+    public AreaTematica(Integer idArea, String descripcion) {
         this.idArea = idArea;
         this.descripcion = descripcion;
     }

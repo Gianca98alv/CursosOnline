@@ -43,12 +43,14 @@ public class Grupo implements Serializable {
     private Profesor profesor;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "grupo")
     private Matricula matricula;
+    private int cupo;
 
     public Grupo() {
     }
     
-    public Grupo(Integer numGrupo) {
+    public Grupo(Integer numGrupo, Integer cupo) {
         this.numGrupo = numGrupo;
+        this.cupo = cupo;
     }
 
     public Integer getNumGrupo() {
@@ -91,6 +93,14 @@ public class Grupo implements Serializable {
         this.matricula = matricula;
     }
 
+    public int getCupo() {
+        return cupo;
+    }
+
+    public void setCupo(int cupo) {
+        this.cupo = cupo;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
