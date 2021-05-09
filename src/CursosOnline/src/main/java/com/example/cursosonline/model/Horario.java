@@ -26,6 +26,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Horario.findAll", query = "SELECT h FROM Horario h")})
 public class Horario implements Serializable {
 
+    private static final String dias[] = {"Lunes","Martes","Miercoles","Jueves","Viernres","Sabado", "Domingo"};
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -107,10 +108,10 @@ public class Horario implements Serializable {
         }
         return true;
     }
-
+    
     @Override
     public String toString() {
-        return "com.example.cursosonline.model.Horario[ seq=" + seq + " ]";
+        return " " + Horario.dias[this.dia-1] + " " + this.hora + ":00" ;
     }
     
 }

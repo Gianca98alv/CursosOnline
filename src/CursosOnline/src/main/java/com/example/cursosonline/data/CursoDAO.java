@@ -51,11 +51,11 @@ public class CursoDAO {
         }
     }
     
-    public List<Curso> searchCurso(String name, String area) throws Exception {
+    public List<Curso> filterCursos(String name, String area) throws Exception {
         List<Curso> cursos = new ArrayList<>();
         try{
             String sql = "SELECT curso.id_curso, curso.descripcion, curso.area_tematica_id "
-                    + "FROM cursosonline.Curso curso INNER JOIN cursosonline.area_tematica area "
+                    + "FROM Curso curso INNER JOIN area_tematica area "
                     + "WHERE curso.area_tematica_id = area.id_area AND curso.descripcion like '%%%s%%' AND area.descripcion like '%%%s%%'";
             sql = String.format(sql, name, area);
             ResultSet rs = db.executeQuery(sql);

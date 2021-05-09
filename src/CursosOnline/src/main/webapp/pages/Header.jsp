@@ -25,17 +25,17 @@
                     <% Administrador administrador = (Administrador) session.getAttribute("adminitrador"); %>
                     <li><a href="/CursosOnline/administrador/registro-cursos">Listado y Registro de cursos</a></li>
                     <li><a href="/CursosOnline/administrador/registro-profesores">Listado y Registro de profesores</a></li>
-                    <li><a href="/CursosOnline/administrador/perfil"><%= administrador.getNombre() + " " +  administrador.getApellido1() + " "  + administrador.getApellido2()%> </a></li>
+                    <li><a class="disabled" href=""> Bienvenido <%= administrador.getNombre() + " " +  administrador.getApellido1() + " "  + administrador.getApellido2()%> </a></li>
                 <%}%>
                 <%if(usuario.getRol().getDescripcion().equals("Profesor")){ %>
                     <% Profesor profesor = (Profesor) session.getAttribute("profesor"); %>
                     <li><a href="/CursosOnline/profesor/carga-asignada">Carga asignada</a></li>
-                    <li><a href="/CursosOnline/profesor/perfil"><%= profesor.getNombre() + " " + profesor.getApellido1() + " " + profesor.getApellido2()%> </a></li>                
+                    <li><a class="disabled" href=""> Bienvenido <%= profesor.getNombre() + " " + profesor.getApellido1() + " " + profesor.getApellido2()%> </a></li>                
                 <%} %>
                 <%if(usuario.getRol().getDescripcion().equals("Estudiante")){ %>
                     <% Estudiante estudiante = (Estudiante) session.getAttribute("estudiante"); %>
-                    <li><a href="/CursosOnline/estudiante/historial">Historial</a></li>
-                    <li><a href="/CursosOnline/estudiante/perfil"><%= estudiante.getNombre() + " " + estudiante.getApellido1() + " " + estudiante.getApellido2()%> </a></li>
+                    <li><a href="/CursosOnline/estudiante/home">Historial</a></li>
+                    <li><a class="disabled" href=""> Bienvenido <%= estudiante.getNombre() + " " + estudiante.getApellido1() + " " + estudiante.getApellido2()%> </a></li>
                 <%} %>
                 <li><a href="/CursosOnline/login/logout">Cerrar Sesión</a></li>
             <% } %>

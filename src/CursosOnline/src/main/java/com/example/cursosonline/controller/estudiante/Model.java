@@ -6,6 +6,9 @@
 package com.example.cursosonline.controller.estudiante;
 
 import com.example.cursosonline.model.Estudiante;
+import com.example.cursosonline.model.Matricula;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,9 +17,11 @@ import com.example.cursosonline.model.Estudiante;
 public class Model {
     
     private Estudiante estudiante;
+    private List<Matricula> matriculas;
 
     public Model() {
         this.estudiante = new Estudiante();
+        this.matriculas = new ArrayList<>();
     }
 
     public Estudiante getEstudiante() {
@@ -25,6 +30,14 @@ public class Model {
 
     public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
+    }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
     }
         
 }

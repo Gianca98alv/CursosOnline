@@ -34,6 +34,20 @@ public class ProfesorDAO {
         }
     }
     
+    Profesor getById(Integer id_profesor) throws Exception {
+        try{
+            String sql = "SELECT * FROM Profesor WHERE id_profesor = %d";
+            sql = String.format(sql, id_profesor);
+            ResultSet rs = db.executeQuery(sql);
+            if(rs.next()) {
+                return map(rs);
+            }
+            throw new SQLException("/profesor/?=" + id_profesor + " Does not exist in DataBase");
+        } catch(Exception e){
+            throw new Exception("Exception: " + e.getMessage());
+        }
+    }
+    
     public Integer add(Profesor profesor) throws Exception {
         try {
             String sql = "INSERT INTO Profesor(usuario_id, apellido1, apellido2, nombre, telefono, e_mail) "
@@ -83,4 +97,6 @@ public class ProfesorDAO {
         String e_mail = rs.getString("e_mail");
         return new Profesor(id_profesor, apellido1, apellido2, nombre, telefono, e_mail);
     }
+
+ 
 }
