@@ -61,6 +61,10 @@ td{
     padding: 10px;
 }
 
+.disabled {
+ pointer-events: none;
+}
+
 
 .ml-1{ margin-left: 10px; }
 .ml-2{ margin-left: 20px; }

@@ -33,6 +33,7 @@
                     <th> Id     </th>
                     <th> Nombre </th>
                     <th> Area Tematica </th>
+                    <th> </th>
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +47,12 @@
                     </td >
                     <td>
                         <%= c.getAreaTematica().getDescripcion() %>
+                    </td>
+                    <td> 
+                        <form name="form" action="/CursosOnline/index/load-groups" method="post">
+                            <input type="hidden" name="curso_id" value="<%= c.getIdCurso() %>">
+                            <input class="button" type="submit" value="Ver Grupos">
+                        </form>
                     </td>
                 </tr>
                 <%}%>

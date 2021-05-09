@@ -47,10 +47,12 @@ public class Matricula implements Serializable {
     private Grupo grupo;
 
     public Matricula() {
+        this.nota = 0;
     }
 
     public Matricula(Integer matriculaId) {
         this.matriculaId = matriculaId;
+        this.nota = 0;
     }
 
     public Matricula(Integer matriculaId, int nota) {

@@ -5,8 +5,8 @@
  */
 package com.example.cursosonline.controller;
 
-import com.example.cursosonline.model.AreaTematica;
 import com.example.cursosonline.model.Curso;
+import com.example.cursosonline.model.Grupo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +17,13 @@ import java.util.List;
 public class Model {
     
     private List<Curso> cursos;
-    private List<AreaTematica> areastematicas;
+    private Curso curso_actual;
+    private List<Grupo> grupos;
 
     public Model() {
         this.cursos = new ArrayList();
-        this.areastematicas = new ArrayList();
+        this.grupos = new ArrayList();
+        this.curso_actual = new Curso();
     }
 
     public List<Curso> getCursos() {
@@ -32,12 +34,20 @@ public class Model {
         this.cursos = cursos;
     }
 
-    public List<AreaTematica> getAreastematicas() {
-        return areastematicas;
+    public List<Grupo> getGrupos() {
+        return grupos;
     }
 
-    public void setAreastematicas(List<AreaTematica> areastematicas) {
-        this.areastematicas = areastematicas;
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
     }
+
+    public Curso getCursoActual() {
+        return curso_actual;
+    }
+
+    public void setCursoActual(Curso actual) {
+        this.curso_actual = actual;
+    } 
     
 }

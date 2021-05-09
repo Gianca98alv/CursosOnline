@@ -15,12 +15,29 @@ import com.example.cursosonline.model.Grupo;
 import com.example.cursosonline.model.Matricula;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MatriculaDAO {
     
     private final ConnectionDB db = ConnectionDB.instance();
 
     public MatriculaDAO() {
+    }
+    
+    public List<Matricula> getByEstudiante(Integer estudiante_id) throws Exception {
+        List<Matricula> matriculas = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM Matricula WHERE estudiante_id = %d";
+            sql = String.format(sql, estudiante_id);
+            ResultSet rs = db.executeQuery(sql);
+            while (rs.next()) {
+                matriculas.add(map(rs));
+            }
+            return matriculas;
+        } catch (Exception e) {
+            throw new Exception("Exception: " + e.getMessage());
+        }
     }
     
     public Matricula get(Integer matricula_id) throws Exception {
@@ -32,6 +49,22 @@ public class MatriculaDAO {
                 return map(rs);
             }
             throw new SQLException("/matricula/?=" + matricula_id + " Does not exist in DataBase");
+        } catch(Exception e){
+            throw new Exception("Exception: " + e.getMessage());
+        }
+    }
+    
+    Matricula findMatriculaByEstudianteCurso(Integer idEstudiante, Integer idCurso) throws Exception {
+        try{
+            String sql = "SELECT m.matricula_id, m.estudiante_id, m.grupo_num, m.estado_id, m.nota "
+                    + "FROM Matricula m inner join Grupo g "
+                    + "WHERE m.grupo_num = g.num_grupo AND m.estudiante_id = %d AND g.curso_id = %d";
+            sql = String.format(sql, idEstudiante, idCurso);
+            ResultSet rs = db.executeQuery(sql);
+            if(rs.next()) {
+                return map(rs);
+            }
+            return null;
         } catch(Exception e){
             throw new Exception("Exception: " + e.getMessage());
         }
@@ -78,7 +111,7 @@ public class MatriculaDAO {
     
     private Matricula map(ResultSet rs) throws Exception{
         Integer matricula_id = rs.getInt("matricula_id");
-        String estudiante_id = rs.getString("estudiante_id");
+        Integer estudiante_id = rs.getInt("estudiante_id");
         Integer grupo_num = rs.getInt("grupo_num");
         Integer estado_id = rs.getInt("estado_id");
         Integer nota = rs.getInt("nota");
@@ -86,7 +119,7 @@ public class MatriculaDAO {
         Matricula matricula = new Matricula(matricula_id, nota);
         
         EstudianteDAO estudianteDAO = new EstudianteDAO();
-        Estudiante estudiante = estudianteDAO.get(estudiante_id);
+        Estudiante estudiante = estudianteDAO.getById(estudiante_id);
         matricula.setEstudiante(estudiante);
         
         GrupoDAO grupoDAO = new GrupoDAO();
@@ -99,4 +132,5 @@ public class MatriculaDAO {
                 
         return matricula;
     }
+   
 }

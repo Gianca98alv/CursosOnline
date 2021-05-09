@@ -8,9 +8,10 @@
 </head>
 <body>
     <%@ include file="/pages/Header.jsp" %>
-    <div id="body" style="margin: 0 auto; width:85%; ">   
-        <h1>Ha ocurrido un error</h1>
+    <div class="container  ml-3">  
+        <h1>Accion Invalida</h1>
         <h1>Cierre la sesion y inicie de nuevo</h1>
     </div>  
+    <%@ include file="/pages/Footer.jsp" %>
 </body>
 </html>
