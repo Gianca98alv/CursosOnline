@@ -85,7 +85,7 @@ public class Controller extends HttpServlet {
                 case "Profesor": {
                     Profesor profesor = new ProfesorDAO().get(db_user.getIdUsuario());
                     session.setAttribute("profesor", profesor);
-                    return "/profesor/home";
+                    return "/profesor/grupos";
                 }
                 case "Administrador": {
                     Administrador administrador = new AdministradorDAO().get(db_user.getIdUsuario());

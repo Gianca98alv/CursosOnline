@@ -57,7 +57,11 @@ public class Controller extends HttpServlet {
                 Service.instance().registrarMatricula(matricula);
                 return "/estudiante/home";
             } else {
-                return "/login/show";
+                if(session.getAttribute("profesor") != null || session.getAttribute("administrador") != null){
+                    return "/pages/Error.jsp";
+                } else {
+                    return "/login/show";
+                }
             }
         } catch (Exception ex) {
             return "/pages/Error.jsp";

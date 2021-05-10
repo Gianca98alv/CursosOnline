@@ -110,6 +110,10 @@ public class Service {
         return this.grupo_dao.get(id_grupo);
     }
     
+    public List<Grupo> getGruposByProfesor(Integer profesor_id) throws Exception {
+        return this.grupo_dao.getByProfesor(profesor_id);
+    }
+    
     // Metodos de Horario
     
     // Metodos de Matricula

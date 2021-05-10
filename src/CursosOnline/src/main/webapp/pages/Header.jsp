@@ -29,7 +29,7 @@
                 <%}%>
                 <%if(usuario.getRol().getDescripcion().equals("Profesor")){ %>
                     <% Profesor profesor = (Profesor) session.getAttribute("profesor"); %>
-                    <li><a href="/CursosOnline/profesor/carga-asignada">Carga asignada</a></li>
+                    <li><a href="/CursosOnline/profesor/grupos">Carga asignada</a></li>
                     <li><a class="disabled" href=""> Bienvenido <%= profesor.getNombre() + " " + profesor.getApellido1() + " " + profesor.getApellido2()%> </a></li>                
                 <%} %>
                 <%if(usuario.getRol().getDescripcion().equals("Estudiante")){ %>

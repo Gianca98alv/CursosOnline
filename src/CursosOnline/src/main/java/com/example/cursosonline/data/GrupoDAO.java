@@ -38,8 +38,23 @@ public class GrupoDAO {
             throw new Exception("Exception: " + e.getMessage());
         }
     }
+    
+    public List<Grupo> getByProfesor(Integer profesor_id) throws Exception {
+        List<Grupo> grupos = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM Grupo WHERE profesor_id = %d";
+            sql = String.format(sql, profesor_id);
+            ResultSet rs = db.executeQuery(sql);
+            while (rs.next()) {
+                grupos.add(map(rs));
+            }
+            return grupos;
+        } catch (Exception e) {
+            throw new Exception("Exception: " + e.getMessage());
+        }
+    }
 
-     public List<Grupo> getByCurso(int curso_id) throws Exception {
+    public List<Grupo> getByCurso(int curso_id) throws Exception {
         List<Grupo> grupos = new ArrayList<>();
         try {
             String sql = "SELECT * FROM Grupo WHERE curso_id = %d";
@@ -115,4 +130,6 @@ public class GrupoDAO {
 
         return grupo;
     }
+
+
 }
